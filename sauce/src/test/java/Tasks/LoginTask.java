@@ -2,6 +2,7 @@ package Tasks;
 
 import org.openqa.selenium.WebDriver;
 
+import Framework.Utils.FileOperation;
 import PageObjects.LoginPage;
 import Validations.LoginValidation;
 
@@ -25,5 +26,22 @@ private LoginValidation loginValidation;
         loginPage.getPasswordInput().sendKeys("secret_sauce");
         loginPage.getLoginButton().click();
     }
+    
+   public void efetuarLoginParametrizado(String user, String password) {
+        
+        loginValidation.validationLoginPage();
+        loginPage.getUserNameInput().sendKeys(user);
+        loginPage.getPasswordInput().sendKeys(password);
+        loginPage.getLoginButton().click();
+    }
+   
+   public void efetuarLoginProperties() {
+       
+       loginValidation.validationLoginPage();
+       loginPage.getUserNameInput().sendKeys(FileOperation.getProperties("user").getProperty("user"));
+       loginPage.getPasswordInput().sendKeys(FileOperation.getProperties("user").getProperty("password"));
+       loginPage.getLoginButton().click();
+   }
+
 
 }

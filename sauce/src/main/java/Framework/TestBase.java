@@ -6,13 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import Framework.Browser.DriverManager;
 import Framework.Browser.TypeBrowser;
+import Framework.Utils.FileOperation;
 
 public class TestBase extends DriverManager{
 
     private static WebDriver driver;
     
-    private static String URL = "https://www.saucedemo.com/";
-    
+    private static String URL = FileOperation.getProperties("url").getProperty("index");
     public static WebDriver getDriverManager() {
         
         driver = getDriver(TypeBrowser.CHROME);

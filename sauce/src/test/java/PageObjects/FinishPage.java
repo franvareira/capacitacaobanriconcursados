@@ -30,7 +30,7 @@ public FinishPage(WebDriver driver) {
     
     public WebElement getLogoutLink() {
 
-        return driver.findElement(By.id("logout_sidebar_link"));
+        return wait.visibilityOfElement(By.id("logout_sidebar_link"));
     }
     
     

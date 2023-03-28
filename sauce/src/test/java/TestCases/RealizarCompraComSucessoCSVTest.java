@@ -3,6 +3,8 @@ package TestCases;
 import javax.security.auth.login.LoginContext;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 
 import Framework.TestBase;
@@ -12,7 +14,7 @@ import Tasks.LoginTask;
 import Tasks.ProdutoTask;
 import Validations.CheckoutValidation;
 
-public class RealizarCompraComSucessoTest extends TestBase{
+public class RealizarCompraComSucessoCSVTest extends TestBase{
 
     
     private WebDriver driver = getDriverManager();
@@ -22,10 +24,11 @@ public class RealizarCompraComSucessoTest extends TestBase{
     CheckoutTask checkoutTask = new CheckoutTask(driver);
     FinishTask finishTask = new FinishTask(driver);
     
-    @Test
-    public void realizarCompra() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "/CSV/user.csv", numLinesToSkip = 1)
+    public void realizarCompra(String user, String password) {
         
-        loginTask.efetuarLogin();
+        loginTask.efetuarLoginParametrizado(user, password);
         produtoTask.selecionarProduto();
         checkoutTask.preencherForm();
         finishTask.finalizarCompra();

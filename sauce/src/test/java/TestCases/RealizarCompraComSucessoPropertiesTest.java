@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import Framework.TestBase;
+import Framework.Utils.FileOperation;
 import Tasks.CheckoutTask;
 import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
 import Validations.CheckoutValidation;
 
-public class RealizarCompraComSucessoTest extends TestBase{
+public class RealizarCompraComSucessoPropertiesTest extends TestBase{
 
     
     private WebDriver driver = getDriverManager();
@@ -25,7 +26,10 @@ public class RealizarCompraComSucessoTest extends TestBase{
     @Test
     public void realizarCompra() {
         
-        loginTask.efetuarLogin();
+       // String user= FileOperation.getProperties("user").getProperty("user");
+       // String password = FileOperation.getProperties("user").getProperty("password");
+       // loginTask.efetuarLoginParametrizado(user, password);
+        loginTask.efetuarLoginProperties();
         produtoTask.selecionarProduto();
         checkoutTask.preencherForm();
         finishTask.finalizarCompra();

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import Framework.Browser.DriverManager;
 import Framework.Browser.TypeBrowser;
 import Framework.Utils.FileOperation;
+import Report.Report;
 
 public class TestBase extends DriverManager{
 
@@ -27,7 +28,7 @@ public class TestBase extends DriverManager{
     
     @AfterEach
     public void finish() {
-        
+        Report.close();
         quitDriver();
     }
 }

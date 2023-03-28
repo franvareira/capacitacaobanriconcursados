@@ -5,8 +5,13 @@ import javax.security.auth.login.LoginContext;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
+import com.aventstack.extentreports.Status;
+
 import Framework.TestBase;
 import Framework.Utils.FileOperation;
+import Report.Report;
+import Report.ReportType;
+import Report.Screenshot;
 import Tasks.CheckoutTask;
 import Tasks.FinishTask;
 import Tasks.LoginTask;
@@ -29,10 +34,21 @@ public class RealizarCompraComSucessoPropertiesTest extends TestBase{
        // String user= FileOperation.getProperties("user").getProperty("user");
        // String password = FileOperation.getProperties("user").getProperty("password");
        // loginTask.efetuarLoginParametrizado(user, password);
-        loginTask.efetuarLoginProperties();
-        produtoTask.selecionarProduto();
-        checkoutTask.preencherForm2();
-        finishTask.finalizarCompra();
+       try {
+           Report.createTest("Realizar compra com sucesso Properties", ReportType.GROUP);
+           Report.createStep("Realizar Login");
+           loginTask.efetuarLoginProperties();
+           Report.createStep("Selecionar Produto");
+           produtoTask.selecionarProduto();
+           Report.createStep("Realizar Checkout");
+           checkoutTask.preencherForm2();
+           Report.createStep("Finalizar a Compra");
+           finishTask.finalizarCompra();
+           
+       }catch (Exception e) {
+       
+           Report.log(Status.FAIL, e.getMessage(),Screenshot.capture(driver));
         
-    }
+           }
+       }
 }

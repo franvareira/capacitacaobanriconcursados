@@ -1,16 +1,21 @@
 package TestCases;
 
-import javax.security.auth.login.LoginContext;
+
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
+import com.aventstack.extentreports.Status;
+
 import Framework.TestBase;
+import Report.Report;
+import Report.ReportType;
+import Report.Screenshot;
 import Tasks.CheckoutTask;
 import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
-import Validations.CheckoutValidation;
+
 
 public class RealizarCompraComSucessoTest extends TestBase{
 
@@ -24,11 +29,18 @@ public class RealizarCompraComSucessoTest extends TestBase{
     
     @Test
     public void realizarCompra() {
-        
-        loginTask.efetuarLogin();
-        produtoTask.selecionarProduto();
-        checkoutTask.preencherForm();
-        finishTask.finalizarCompra();
-        
+        try {
+            
+            Report.createTest("Realizar Compra com Sucesso", ReportType.SINGLE);
+            loginTask.efetuarLogin();
+            produtoTask.selecionarProduto();
+            checkoutTask.preencherForm();
+            finishTask.finalizarCompra();
+            
+            }catch (Exception e) {
+            
+               Report.log(Status.FAIL, e.getMessage(),Screenshot.capture(driver)); 
+            }
+
     }
 }

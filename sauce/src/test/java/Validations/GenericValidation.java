@@ -3,7 +3,11 @@ package Validations;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
+import com.aventstack.extentreports.Status;
+
 import PageObjects.GenericPage;
+import Report.Report;
+import Report.Screenshot;
 
 public class GenericValidation {
 
@@ -29,15 +33,30 @@ public class GenericValidation {
      * onde ira receber por paramentro qual o texto esperado para compacao*/
      
     public void validationPages(String texto) {
-        
-       String label = genericPage.getHomeTextSpan().getText();
-       Assertions.assertEquals(texto, label);
+       
+       try {
+           
+           String label = genericPage.getHomeTextSpan().getText();
+           Assertions.assertEquals(texto, label);
+           Report.log(Status.PASS, "A página "+texto+ " foi acessada com sucesso!", Screenshot.captureBase64(driver));
+           
+       }catch (Exception e) {
+           
+           Report.log(Status.FAIL, e.getMessage(), Screenshot.captureBase64(driver));
+    }
+       
         
     }
     
     public void validationProduto() {
+        try {
+            
+            Assertions.assertTrue(genericPage.getProdutoLabel().isDisplayed());
+            Report.log(Status.PASS, "O produto selecionado esta correto", Screenshot.captureBase64(driver));
+        }catch (Exception e) {
+            Report.log(Status.FAIL, e.getMessage(), Screenshot.captureBase64(driver));
+        }
         
-        Assertions.assertTrue(genericPage.getProdutoLabel().isDisplayed());
          
      }
 }

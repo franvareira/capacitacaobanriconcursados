@@ -31,7 +31,7 @@ public class RealizarCompraComSucessoPropertiesTest extends TestBase{
        // loginTask.efetuarLoginParametrizado(user, password);
         loginTask.efetuarLoginProperties();
         produtoTask.selecionarProduto();
-        checkoutTask.preencherForm();
+        checkoutTask.preencherForm2();
         finishTask.finalizarCompra();
         
     }

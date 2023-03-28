@@ -3,6 +3,7 @@ package Tasks;
 import org.openqa.selenium.WebDriver;
 
 import Framework.Utils.FakersGeneration;
+import Framework.Utils.FileOperation;
 import PageObjects.CheckoutPage;
 import Validations.CheckoutValidation;
 import Validations.GenericValidation;
@@ -31,6 +32,27 @@ public class CheckoutTask {
         checkoutPage.getLastNameInput().sendKeys(fakers.getLastName());
         checkoutPage.getZipCodeInput().sendKeys(fakers.getZipCode());
         checkoutValidation.validationForm();
+        checkoutPage.getContinueButton().click();
+        genericValidation.validationPages("Checkout: Overview");
+        genericValidation.validationProduto();
+        checkoutPage.getFinishButton().click();
+    }
+    
+    public void preencherForm2() {
+        
+        String name = fakers.getFirstName();
+        String lastName = fakers.getLastName();
+        String zipCode = fakers.getZipCode();
+        FileOperation.setProperties("form", "name", name);
+        FileOperation.setProperties("form", "lastname", lastName);
+        FileOperation.setProperties("form", "zip", zipCode);
+        
+
+        genericValidation.validationPages("Checkout: Your Information");
+        checkoutPage.getFirstNameInput().sendKeys(name);
+        checkoutPage.getLastNameInput().sendKeys(lastName);
+        checkoutPage.getZipCodeInput().sendKeys(zipCode);
+        checkoutValidation.validationCamposForm();
         checkoutPage.getContinueButton().click();
         genericValidation.validationPages("Checkout: Overview");
         genericValidation.validationProduto();

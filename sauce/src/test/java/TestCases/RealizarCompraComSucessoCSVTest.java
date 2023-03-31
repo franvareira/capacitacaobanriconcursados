@@ -1,8 +1,13 @@
 package TestCases;
 
-import javax.security.auth.login.LoginContext;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +17,8 @@ import Tasks.CheckoutTask;
 import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
-import Validations.CheckoutValidation;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RealizarCompraComSucessoCSVTest extends TestBase{
 
     
@@ -26,6 +31,8 @@ public class RealizarCompraComSucessoCSVTest extends TestBase{
     
     @ParameterizedTest
     @CsvFileSource(resources = "/CSV/user.csv", numLinesToSkip = 1)
+    @Tags({@Tag("regressao"),@Tag("positivo")})
+    @Order(4)
     public void realizarCompra(String user, String password) {
         
         loginTask.efetuarLoginParametrizado(user, password);

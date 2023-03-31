@@ -2,7 +2,11 @@ package TestCases;
 
 
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.Status;
@@ -16,7 +20,7 @@ import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RealizarCompraComSucessoTest extends TestBase{
 
     
@@ -28,6 +32,8 @@ public class RealizarCompraComSucessoTest extends TestBase{
     FinishTask finishTask = new FinishTask(driver);
     
     @Test
+    @Tag("regressao")
+    @Order(1)
     public void realizarCompra() {
         try {
             

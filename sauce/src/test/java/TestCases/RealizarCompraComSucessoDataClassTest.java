@@ -1,5 +1,7 @@
 package TestCases;
 
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,6 +26,8 @@ public class RealizarCompraComSucessoDataClassTest extends TestBase{
     
     @ParameterizedTest
     @MethodSource("Framework.Utils.DataClass#loginTestData")
+    @Tag("positivo")
+    @Order(3)
     public void realizarCompra(String user, String password) {
         
         loginTask.efetuarLoginParametrizado(user, password);

@@ -2,6 +2,8 @@ package TestCases;
 
 import javax.security.auth.login.LoginContext;
 
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -29,6 +31,8 @@ public class RealizarCompraComSucessoPropertiesTest extends TestBase{
     FinishTask finishTask = new FinishTask(driver);
     
     @Test
+    @Tag("positivo")
+    @Order(2)
     public void realizarCompra() {
         
        // String user= FileOperation.getProperties("user").getProperty("user");
